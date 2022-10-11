@@ -1,0 +1,711 @@
+#\DeclareLyXModule[fancythm.sty]{Fancy Theorems}
+#DescriptionBegin
+#Loading the fancythm.sty package which defines theorem environments and the proof environment exploiting the
+#thmtools machinery. Both numbered and unnumbered types are provided. In addition, 
+#one can change the format of the theorems with in the lyx document with syntax similar to  
+#the key-val of thmtools, and use the \listoftheorems command,
+#provided by the thmtools package.
+#DescriptionEnd
+#Excludes: theorems-std | theorems-starred | theorems-ams | theorems-bytype
+
+# Original Author : Udi Fogiel (most was copied from the AMS Theorem (numbered by type) module )
+
+# The environments defined are :
+# - Theorem
+# - Corollary
+# - Lemma
+# - Proposition
+# - Conjecture
+# - Fact
+# - Definition
+# - Example
+# - Problem
+# - Exercise
+# - Solution
+# - Remark
+# - Claim
+# - Theorem*
+# - Corollary*
+# - Lemma*
+# - Proposition*
+# - Conjecture*
+# - Fact*
+# - Definition*
+# - Example*
+# - Problem*
+# - Exercise*
+# - Solution*
+# - Remark*
+# - Claim*
+# - Proof (by inclusion)
+# - Case (by inclusion)
+
+# We need separate counters for each theorem-like style.
+Format 66
+
+Counter theorem
+	Within         section
+End
+Counter corollary
+	Within         section
+End
+Counter lemma
+	Within         section
+End
+Counter proposition
+	Within         section
+End
+Counter conjecture
+	Within         section
+End
+Counter fact
+	Within         section
+End
+Counter definition
+	Within         section
+End
+Counter example
+	Within         section
+End
+Counter problem
+	Within         section
+End
+Counter exercise
+	Within         section
+End
+Counter solution
+	Within         section
+End
+Counter remark
+	Within         section
+End
+Counter claim
+	Within         section
+End
+
+OutlinerName thm "Definitions & Theorems"
+
+Style Theorem
+	Category              Reasoning
+	Margin                First_Dynamic
+	LatexType             Environment
+	LatexName             thm
+	NextNoIndent          1
+	AddToToc              thm
+	IsTocCaption      0
+	Argument 1
+		LabelString    "Optinal Note"
+		Tooltip        "Additional text appended to the theorem header"
+		IsTocCaption      1
+	EndArgument
+	LabelSep              xx
+	ParIndent             MMM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Left
+	LabelType             Static
+	LabelCounter          theorem
+	LabelString           "Theorem \thetheorem."
+	Font
+	  Shape               Italic
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@thm@defaultname\endcsname{_(Theorem)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@thm@defaultname\endcsname{_(Theorem)}}
+	EndBabelPreamble
+	Preamble
+		\usepackage{fancythm}
+		\declarefancythm{thm}{headfont=\bfseries,bodyfont=\itshape}{Theorem}{blue}{bc-fleur.mps}
+		\setfancythmkeys{thm}{title=\csname fancythm@thm@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Theorem*
+	Category              Reasoning
+	LatexType             Environment
+	Margin                First_Dynamic
+	LatexName             thm*
+	LabelType             Static
+	LabelString           "Theorem."
+	NextNoIndent          1
+	AddToToc              thm
+	IsTocCaption      0
+	Argument 1
+		LabelString    "Optinal Note"
+		Tooltip        "Additional text appended to the theorem header"
+		IsTocCaption      1
+	EndArgument
+	LabelSep              xx
+	ParIndent             MMM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Left
+	Font
+	  Shape               Italic
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\renewcommand\csname fancythm@thm*@defaultname\endcsname{_(Theorem)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@thm*@defaultname\endcsname{_(Theorem)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{thm*}{headfont=\bfseries,bodyfont=\itshape}{Theorem}{blue}{bc-fleur.mps}
+		\setfancythmkeys{thm*}{title=\csname fancythm@thm*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Corollary
+	CopyStyle             Theorem
+	LatexName             cor
+	LabelString           "Corollary \thecorollary."
+	LabelCounter          corollary
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@cor@defaultname\endcsname{_(Corollary)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@cor@defaultname\endcsname{_(Corollary)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{cor}{headfont=\bfseries,bodyfont=\itshape}{Corollary}{brown}{bc-lampe.mps}
+		\setfancythmkeys{cor}{title=\csname fancythm@cor@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Corollary*
+	CopyStyle             Theorem*
+	LatexName             cor*
+	LabelString           "Corollary."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@cor*@defaultname\endcsname{_(Corollary)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@cor*@defaultname\endcsname{_(Corollary)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{cor*}{headfont=\bfseries,bodyfont=\itshape}{Corollary}{brown}{bc-lampe.mps}
+		\setfancythmkeys{cor*}{title=\csname fancythm@cor*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Lemma
+	CopyStyle             Theorem
+	LatexName             lem
+	LabelString           "Lemma \thelemma."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@lem@defaultname\endcsname{_(Lemma)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@lem@defaultname\endcsname{_(Lemma)}}
+	EndBabelPreamble
+	LabelCounter          lemma
+	Preamble
+		\declarefancythm{lem}{headfont=\bfseries,bodyfont=\itshape}{Lemma}{cyan}{bc-soleil.mps}
+		\setfancythmkeys{lem}{title=\csname fancythm@lem@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Lemma*
+	CopyStyle             Theorem*
+	LatexName             lem*
+	LabelString           "Lemma."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@lem*@defaultname\endcsname{_(Lemma)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@lem*@defaultname\endcsname{_(Lemma)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{lem*}{headfont=\bfseries,bodyfont=\itshape}{Lemma}{cyan}{bc-soleil.mps}
+		\setfancythmkeys{lem*}{title=\csname fancythm@lem*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Proposition
+	CopyStyle             Theorem
+	LatexName             prop
+	LabelString           "Proposition \theproposition."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@prop@defaultname\endcsname{_(Proposition)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@prop@defaultname\endcsname{_(Proposition)}}
+	EndBabelPreamble
+	LabelCounter          proposition
+	Preamble
+		\declarefancythm{prop}{headfont=\bfseries,bodyfont=\itshape}{Proposition}{green}{bc-loupe.mps}
+		\setfancythmkeys{prop}{title=\csname fancythm@prop@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Proposition*
+	CopyStyle             Theorem*
+	LatexName             prop*
+	LabelString           "Proposition."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@prop*@defaultname\endcsname{_(Proposition)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@prop*@defaultname\endcsname{_(Proposition)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{prop*}{headfont=\bfseries,bodyfont=\itshape}{Proposition}{green}{bc-loupe.mps}
+		\setfancythmkeys{prop*}{title=\csname fancythm@prop*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Conjecture
+	CopyStyle             Theorem
+	LatexName             conjecture
+	LabelString           "Conjecture \theconjecture."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@conjecture@defaultname\endcsname{_(Conjecture)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@conjecture@defaultname\endcsname{_(Conjecture)}}
+	EndBabelPreamble
+	LabelCounter          conjecture
+	Preamble
+		\declarefancythm{conjecture}{headfont=\bfseries,bodyfont=\itshape}{Conjecture}{lime}{bc-trefle.mps}
+		\setfancythmkeys{conjecture}{title=\csname fancythm@conjecture@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Conjecture*
+	CopyStyle             Theorem*
+	LatexName             conjecture*
+	LabelString           "Conjecture."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@conjecture*@defaultname\endcsname{_(Conjecture)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@conjecture*@defaultname\endcsname{_(Conjecture)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{conjecture*}{headfont=\bfseries,bodyfont=\itshape}{Conjecture}{lime}{bc-trefle.mps}
+		\setfancythmkeys{conjecture*}{title=\csname fancythm@conjecture*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+
+Style Fact
+	CopyStyle             Theorem
+	LatexName             fact
+	LabelString           "Fact \thefact."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@fact@defaultname\endcsname{_(Fact)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@fact@defaultname\endcsname{_(Fact)}}
+	EndBabelPreamble
+	LabelCounter          fact
+	Preamble
+		\declarefancythm{fact}{headfont=\bfseries,bodyfont=\itshape}{Fact}{magenta}{bc-info.mps}
+		\setfancythmkeys{fact}{title=\csname fancythm@fact@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Fact*
+	CopyStyle             Theorem*
+	LatexName             fact*
+	LabelString           "Fact."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@fact*@defaultname\endcsname{_(Fact)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@fact*@defaultname\endcsname{_(Fact)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{fact*}{headfont=\bfseries,bodyfont=\itshape}{Fact}{magenta}{bc-info.mps}
+		\setfancythmkeys{fact*}{title=\csname fancythm@fact*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+
+Style Definition
+	CopyStyle             Theorem
+	LatexName             defn
+	LabelString           "Definition \thedefinition."
+	DependsOn			  Theorem
+	Font
+	  Shape               Up
+	EndFont
+	LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@defn@defaultname\endcsname{_(Definition)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@defn@defaultname\endcsname{_(Definition)}}
+	EndBabelPreamble
+	LabelCounter          definition
+	Preamble
+		\declarefancythm{defn}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Definition}{olive}{bc-book.mps}
+		\setfancythmkeys{defn}{title=\csname fancythm@defn@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Definition*
+	CopyStyle             Theorem*
+	LatexName             defn*
+	LabelType             Static
+	LabelString           "Definition."
+	Font
+	  Shape               Up
+	EndFont
+	LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@defn*@defaultname\endcsname{_(Definition)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@defn*@defaultname\endcsname{_(Definition)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{defn*}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Definition}{olive}{bc-book.mps}
+		\setfancythmkeys{defn*}{title=\csname fancythm@defn*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Example
+	CopyStyle             Definition
+	LatexName             example
+	LabelString           "Example \theexample."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@example@defaultname\endcsname{_(Example)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@example@defaultname\endcsname{_(Example)}}
+	EndBabelPreamble
+	LabelCounter          example
+	Preamble
+		\declarefancythm{example}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Example}{orange}{bc-plume.mps}
+		\setfancythmkeys{example}{title=\csname fancythm@example@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Example*
+	CopyStyle             Definition*
+	LatexName             example*
+	LabelString           "Example."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@example*@defaultname\endcsname{_(Example)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@example*@defaultname\endcsname{_(Example)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{example*}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Example}{orange}{bc-plume.mps}
+		\setfancythmkeys{example*}{title=\csname fancythm@example*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+
+Style Problem
+	CopyStyle             Definition
+	LatexName             problem
+	LabelString           "Problem \theproblem."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@problem@defaultname\endcsname{_(Problem)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@problem@defaultname\endcsname{_(Problem)}}
+	EndBabelPreamble
+	LabelCounter          problem
+	Preamble
+		\declarefancythm{problem}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Problem}{pink}{bc-dz.mps}
+		\setfancythmkeys{problem}{title=\csname fancythm@problem@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Problem*
+	CopyStyle             Definition*
+	LatexName             problem*
+	LabelString           "Problem."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@problem*@defaultname\endcsname{_(Problem)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@problem*@defaultname\endcsname{_(Problem)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{problem*}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Problem}{pink}{bc-dz.mps}
+		\setfancythmkeys{problem*}{title=\csname fancythm@problem*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Exercise
+	CopyStyle             Definition
+	LatexName             xca
+	LabelString           "Exercise \theexercise."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@xca@defaultname\endcsname{_(Exercise)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@xca@defaultname\endcsname{_(Exercise)}}
+	EndBabelPreamble
+	LabelCounter          exercise
+	Preamble
+		\declarefancythm{xca}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Problem}{purple}{bc-inter.mps}
+		\setfancythmkeys{xca}{title=\csname fancythm@xca@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Exercise*
+	CopyStyle             Definition*
+	LatexName             xca*
+	LabelString           "Exercise."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@xca*@defaultname\endcsname{_(Exercise)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@xca*@defaultname\endcsname{_(Exercise)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{xca*}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Problem}{purple}{bc-inter.mps}
+		\setfancythmkeys{xca*}{title=\csname fancythm@xca*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Solution
+	CopyStyle             Definition
+	LatexName             sol
+	LabelString           "Solution \thesolution."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@sol@defaultname\endcsname{_(Solution)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@sol@defaultname\endcsname{_(Solution)}}
+	EndBabelPreamble
+	LabelCounter          solution
+	Preamble
+		\declarefancythm{sol}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Solution}{red}{bc-crayon.mps}
+		\setfancythmkeys{sol}{title=\csname fancythm@sol@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Solution*
+	CopyStyle             Definition*
+	LatexName             sol*
+	LabelString           "Solution."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@sol*@defaultname\endcsname{_(Solution)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@sol*@defaultname\endcsname{_(Solution)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{sol*}{headfont=\bfseries,bodyfont=\upshape\mdseries}{Solution}{red}{bc-crayon.mps}
+		\setfancythmkeys{sol*}{title=\csname fancythm@sol*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Remark
+	CopyStyle             Theorem
+	LatexName             rem
+	LabelString           "Remark \theremark."
+	DependsOn			  Theorem
+	Font
+	  Shape               Up
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Series              Medium
+	  Shape               Italic
+	EndFont
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@rem@defaultname\endcsname{_(Remark)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@rem@defaultname\endcsname{_(Remark)}}
+	EndBabelPreamble
+	LabelCounter          remark
+	Preamble
+		\declarefancythm{rem}{headfont=\itshape,bodyfont=,}{Remark}{teal}{bc-attention.mps}
+		\setfancythmkeys{rem}{title=\csname fancythm@rem@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Remark*
+	CopyStyle             Theorem*
+	LatexName             rem*
+	LabelString           "Remark."
+	Font
+	  Shape               Up
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Series              Medium
+	  Shape               Italic
+	EndFont
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@rem*@defaultname\endcsname{_(Remark)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@rem*@defaultname\endcsname{_(Remark)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{rem*}{headfont=\itshape,bodyfont=,}{Remark}{teal}{bc-attention.mps}
+		\setfancythmkeys{rem*}{title=\csname fancythm@rem*@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Claim
+	CopyStyle             Remark
+	LatexName             claim
+	LabelString           "Claim \theclaim."
+	DependsOn			  Theorem
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@claim@defaultname\endcsname{_(Claim)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@claim@defaultname\endcsname{_(Claim)}}
+	EndBabelPreamble
+	LabelCounter          claim
+	Preamble
+		\declarefancythm{claim}{headfont=\itshape,bodyfont=,}{Claim}{violet}{bc-etoile.mps}
+		\setfancythmkeys{claim}{title=\csname fancythm@claim@defaultname\endcsname}
+	EndPreamble
+End
+
+
+Style Claim*
+	CopyStyle             Remark*
+	LatexName             claim*
+	LabelString           "Claim."
+	LangPreamble
+		\expandafter\providecommand\csname fancythm@claim*@defaultname\endcsname{_(Claim)}
+	EndLangPreamble
+	BabelPreamble
+		\addto\captions$$lang{\expandafter\def\csname fancythm@claim*@defaultname\endcsname{_(Claim)}}
+	EndBabelPreamble
+	Preamble
+		\declarefancythm{claim*}{headfont=\itshape,bodyfont=,}{Claim}{violet}{bc-etoile.mps}
+		\setfancythmkeys{claim*}{title=\csname fancythm@claim*@defaultname\endcsname}
+	EndPreamble
+End
+
+InsetLayout "Flex:set keys"
+	LyXType				custom
+	LatexType			command
+	Decoration			classic
+	LatexName			setfancythmkeys
+	ResetArgs			true
+	LabelString			"set keys"
+	PassThru		1
+	Argument 1
+	  LabelString		"envs"
+	  Tooltip			"Insert wanted environments here"
+	  PassThru		1
+	  Mandatory		1
+	  AutoInsert	1
+	EndArgument
+	Font
+	  Color               olive
+	  Family              typewriter
+	EndFont
+	LabelFont
+	  Color               latex
+	  Size                Small
+	EndFont
+	MultiPar              true
+	CustomPars            false
+	ForcePlain            true
+	PassThru              true
+	ParbreakIsNewline     true
+	KeepEmpty             true
+	FreeSpacing           true
+End
+
+Input theorems-case.inc
+Input theorems-proof.inc
+
+Style "List of Theorems"
+	Margin				Dynamic
+	LatexType			Command
+	LatexName			lyxlistoftheorems
+	Category              Reasoning
+	LabelString			"List of theorems"
+	KeepEmpty			1
+	PassThru			1
+	ParSkip				0.4
+	Align				Block
+	LabelSep			xx
+	LabelType			Static
+	Argument 1
+	  LabelString		"keys"
+	  Tooltip			"Insert wanted keys here"
+	  PassThru		1
+	  Mandatory		0
+	  AutoInsert	1
+	EndArgument
+	LabelFont
+	  Series			Bold
+	  Color				Green
+	EndFont
+	DependsOn		Theorem
+	Preamble
+		\def\lyxlistoftheorems#1{\listoftheorems[#1]\addtocontents{loe}{}}
+	EndPreamble
+End
+
+
+Input theorems-refprefix.inc

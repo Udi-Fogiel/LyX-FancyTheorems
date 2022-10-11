@@ -1,0 +1,405 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fancythm}
+
+\RequirePackage{amsthm}
+\RequirePackage{thmtools}
+
+%%%%%%%%%%%%
+%%% keys %%%
+%%%%%%%%%%%%
+\RequirePackage{keyval}
+
+\def\define@fancythm@key#1#2{%
+	\define@key{fancythm@#1}{#2}{%
+		\@xa\gdef\csname fancythm@#1@#2\endcsname{##1}%
+	}%
+}
+
+\def\define@fancythm@title#1{%
+	\@for\env:={title,name,heading}\do{%
+		\@expandtwoargs\define@key{fancythm@#1}{\env}{%
+			\@xa\gdef\csname fancythm@#1@title\endcsname{##1}%
+		}%
+	}%
+}
+
+\def\define@fancythm@numbered#1{%
+	\define@key{fancythm@#1}{numbered}[true]{%
+		\def\fancythm@bool{##1}%
+		\ifx\fancythm@bool\thmt@TRUE
+			\@xa\gdef\csname the#1\endcsname{\@arabic{\csname c@#1\endcsname}}%
+			\global\@namedef{fancythm@#1@space}{\space}%	
+		\else
+			\ifx\fancythm@bool\thmt@FALSE
+				\@xa\gdef\csname the#1\endcsname{}%
+				\@xa\gdef\csname #1space\endcsname{}%
+			\else
+				\PackageError{fancythm}{Unknown value '##1' to key numbered}{}%
+			\fi
+		\fi
+	}%
+}
+
+\def\fancythm@counters#1#2{%
+	\ifcsname c@#2\endcsname
+		\begingroup
+		\def\@elt##1{\counterwithout{#1}{##1}}%
+		\cl@@ckpt
+		\counterwithin{#1}{#2}%
+		\endgroup
+		\setcounter{#1}{0}%
+	\else
+		\begingroup
+		\def\@elt##1{\counterwithout{#1}{##1}}%
+		\cl@@ckpt
+		\endgroup
+		\setcounter{#1}{0}%
+	\fi
+}
+
+\def\define@fancythm@numberwithin#1{%
+	\@for\env:={numberwithin,within,parent}\do{%
+		\@expandtwoargs\define@key{fancythm@#1}{\env}[]{%
+			\fancythm@counters{#1}{##1}%
+		}%
+	}%
+}
+
+\def\define@fancythm@sibling#1{%
+	\@for\env:={sibling,numberlike,sharenumber}\do{%
+		\@expandtwoargs\define@key{fancythm@#1}{\env}[]{%
+			\@ifundefined{c@fancythm@#1}{%
+				\newcounter{fancythm@#1}%
+				\@xa\global\@xa\let\csname c@fancythm@#1\@xa\endcsname\csname c@#1\endcsname
+			}{}%
+			\ifcsname c@##1\endcsname
+				\@xa\global\@xa\let\csname c@#1\@xa\endcsname\csname c@##1\endcsname
+			\else
+				\@xa\global\@xa\let\csname c@#1\@xa\endcsname\csname c@fancythm@#1\endcsname
+				\setcounter{#1}{0}%
+			\fi
+		}%
+	}%
+}
+
+\def\define@fancythm@keyfamily#1{%
+	\define@fancythm@key{#1}{headfont}%
+	\define@fancythm@key{#1}{notefont}%
+	\define@fancythm@key{#1}{bodyfont}%
+	\define@fancythm@key{#1}{headpunct}%
+	\define@fancythm@key{#1}{headformat}%
+	\define@fancythm@key{#1}{postheadspace}%
+	\define@fancythm@key{#1}{headindent}%
+	\define@fancythm@title{#1}%
+	\define@fancythm@key{#1}{preheadhook}%
+	\define@fancythm@key{#1}{postheadhook}%
+	\define@fancythm@key{#1}{prefoothook}%
+	\define@fancythm@key{#1}{postfoothook}%
+	\define@fancythm@key{#1}{refname}%
+	\define@fancythm@key{#1}{leftnotebrace}%
+	\define@fancythm@key{#1}{rightnotebrace}%
+	\define@fancythm@key{#1}{spaceabove}%
+	\define@fancythm@key{#1}{spacebelow}%
+	\define@fancythm@key{#1}{qed}%
+	\define@fancythm@numberwithin{#1}%
+	\define@fancythm@numbered{#1}%
+	\define@fancythm@sibling{#1}%
+}
+
+\def\setfancythmkeys#1#2{%
+	\def\fancythm@templst{#1}%
+	\@expandtwoargs\in@{,all,}{,\fancythm@templst,}\ifin@
+		\ifx\fancythm@envs\@gobble\else
+			\@for\fam:=\fancythm@envs\do{%
+				\setkeys{fancythm@\fam}{#2}%
+			}%
+		\fi
+		\@expandtwoargs\@removeelement{all}\fancythm@templst\fancythm@templst
+	\fi
+	\@expandtwoargs\in@{,reg,}{,\fancythm@templst,}\ifin@
+		\ifx\fancythm@regenvs\@gobble\else
+			\@for\fam:=\fancythm@regenvs\do{%
+				\setkeys{fancythm@\fam}{#2}%
+			}%
+		\fi
+		\@expandtwoargs\@removeelement{reg}\fancythm@templst\fancythm@templst
+	\fi
+	\@expandtwoargs\in@{,strd,}{,\fancythm@templst,}\ifin@
+		\ifx\fancythm@strdenvs\@gobble\else
+			\@for\fam:=\fancythm@strdenvs\do{%
+				\setkeys{fancythm@\fam}{#2}%
+			}%
+		\fi
+		\@expandtwoargs\@removeelement{strd}\fancythm@templst\fancythm@templst
+	\fi
+	\ifx\fancythm@templst\@empty\else
+		\@for\fam:=\fancythm@templst\do{%
+			\setkeys{fancythm@\fam}{#2}%
+		}%
+	\fi
+}
+
+%%%%%%%%%%%%%%%%
+%%% defaults %%%
+%%%%%%%%%%%%%%%%
+\def\fancythm@lang@font{}
+
+\AtBeginDocument{%
+	\@ifundefined{languagename}{}{%
+		\def\fancythm@lang@font{\csname\languagename font\endcsname}%
+	}%
+	\@ifpackageloaded{hyperref}{%
+		\newcounter{@fancythm@hyperref}% a dummy counter for correct hyper-links
+		\addtotheorempreheadhook{\stepcounter{@fancythm@hyperref}}%
+	}{}%
+}
+
+\def\define@fancythm@defaults#1#2{%
+	\define@key{fancythm@#1}{default}[\relax]{%
+		\setkeys{fancythm@#1}{%
+			headformat=\csname #1title\endcsname\NUMBER\NOTE,
+			notefont=\normalfont\fancythm@lang@font,
+			headpunct={.},
+			postheadspace=1em,
+			headindent=0pt,
+			preheadhook=,
+			postheadhook=,
+			prefoothook=,
+			postfoothook=,
+			rightnotebrace=),
+			leftnotebrace=(,
+			spaceabove=6pt,
+			spacebelow=6pt,
+			qed=,
+			#2
+		}%
+		\@xa\gdef\csname fancythm@#1@beginstyle\endcsname{}
+		\@xa\gdef\csname fancythm@#1@endstyle\endcsname{}
+	}%
+	\define@key{fancythm@#1}{named}[\relax]{%
+		\setkeys{fancythm@#1}{%
+			default,
+			headformat={\def\thmt@space{}\NOTE},
+			notefont=\bfseries,
+			bodyfont=\itshape,
+			rightnotebrace=,
+			leftnotebrace=,
+			numbered=false
+		}%
+	}%
+	\define@key{fancythm@#1}{margins}[1.3in]{%
+		\setkeys{fancythm@#1}{%
+			default,
+			headformat={\def\thmt@space{}\llap{\smash{\parbox[t]{##1}{\centering \csname #1title\endcsname\\ \NUMBER}}}\NOTE},
+			headfont=\bfseries,
+			notefont=\bfseries,
+			bodyfont=\upshape,
+			headpunct=,
+			postheadspace=0pt,
+			rightnotebrace=.\hspace{1em},
+			leftnotebrace=,
+		}%
+	}%
+}
+
+%%%%%%%%%%%%%%%%%%
+%%% declarethm %%%
+%%%%%%%%%%%%%%%%%%
+% three macros that holds the list of theorems, 
+% unstarred theorems and starred theorems
+% defined with \declarefancythm 
+\let\fancythm@envs\@gobble
+\let\fancythm@regenvs\@gobble
+\let\fancythm@strdenvs\@gobble
+
+\newcommand{\declarefancythm}[5]{%  #1 = env name, #2 = default keys, #3 = default title, #4 = color, #5 = logo
+	\define@fancythm@keyfamily{#1}%
+	\global\@namedef{#1title}{\@nameuse{fancythm@#1@title}\@nameuse{fancythm@#1@space}}%
+	\setfancythmkeys{#1}{title=#3}%
+	\setfancythmkeys{#1}{refname=\csname fancythm@#1@title\endcsname}%
+	\AtBeginDocument{%
+		\@ifpackageloaded{hyperref}{%
+			\@xa\global\@xa\let\csname theH#1\endcsname\the@fancythm@hyperref  
+		}{}%
+	}%
+	\define@fancythm@defaults{#1}{#2}%
+	\setfancythmkeys{#1}{default}%
+	\declaretheoremstyle[%
+		headfont=\normalfont\fancythm@lang@font\csname fancythm@#1@headfont\endcsname,                         
+		notefont=\normalfont\fancythm@lang@font\csname fancythm@#1@notefont\endcsname,                         
+		bodyfont=\normalfont\fancythm@lang@font\csname fancythm@#1@bodyfont\endcsname,                      
+		headpunct={\csname fancythm@#1@headpunct\endcsname},                     
+		headformat={\hspace*{\csname fancythm@#1@headindent\endcsname}\csname fancythm@#1@headformat\endcsname},                     
+		notebraces={\csname fancythm@#1@leftnotebrace\endcsname}{\csname fancythm@#1@rightnotebrace\endcsname},                      
+		postheadspace=\csname fancythm@#1@postheadspace\endcsname,                                  
+		spaceabove=0pt,
+		spacebelow=0pt]{fancythm@#1}%
+	\declaretheorem[%
+		style=fancythm@#1,
+		title=\protect\csname fancythm@#1@title\endcsname,
+		preheadhook=\csname fancythm@#1@preheadhook\endcsname\vspace{\csname fancythm@#1@spaceabove\endcsname}\csname fancythm@#1@beginstyle\endcsname,
+		postheadhook=\csname fancythm@#1@postheadhook\endcsname,
+		prefoothook=\csname fancythm@#1@prefoothook\endcsname,
+		postfoothook=\csname fancythm@#1@endstyle\endcsname\vspace{\csname fancythm@#1@spacebelow\endcsname}\csname fancythm@#1@postfoothook\endcsname,
+		refname=\csname fancythm@#1@refname\endcsname,
+		qed=\csname fancythm@#1@qed\endcsname]{#1}%
+	\edef\fancythm@envs{\fancythm@envs,#1}%
+	\in@{*@fancythm@strd}{#1@fancythm@strd}\ifin@
+		\setfancythmkeys{#1}{numberwithin=section,numbered=false}%
+		\edef\fancythm@strdenvs{\fancythm@strdenvs,#1}%
+	\else
+		\setfancythmkeys{#1}{numbered=true,numberwithin=section}%
+		\edef\fancythm@regenvs{\fancythm@regenvs,#1}%
+	\fi
+	\if@fancythm@templates@
+		\colorlet{fancythm@#1@color}{#4}%
+		\@xa\def\csname fancythm@#1@logo\endcsname{\includegraphics[width=17pt]{#5}}%
+		\define@fancythm@style{#1}%
+	\fi
+}
+
+\@onlypreamble\declarefancythm
+
+%%%%%%%%%%%%%%
+%%% listof %%%
+%%%%%%%%%%%%%%
+% new keys that supports a list with no title, and a list inside multicol
+\RequirePackage{multicol}
+\define@key{thmt-listof}{columns}[1]{\def\fancythm@listofthm@columns{#1}}
+
+\newif\if@fancythm@notitle@
+\define@key{thmt-listof}{notitle}[true]{%
+	\def\fancythm@bool{#1}%
+	\ifx\fancythm@bool\thmt@TRUE
+		\@fancythm@notitle@true
+	\else
+		\ifx\fancythm@bool\thmt@FALSE
+			\@fancythm@notitle@false
+		\else
+			\PackageError{fancythm}{Unknown value '#1' to key notitle}{}%
+		\fi
+	\fi
+}
+
+\def\fancythm@listofthm@columns{1}
+% the new \thmt@mklistcmd check if 
+% a theorem was defined via \declarefancythm.
+% if it is, the entry lable will be \fancythm@<envname>@title,
+% if not, it will execute the original definition
+\renewcommand{\thmt@mklistcmd}{%
+	\ifcsname fancythm@\csname thmt@envname\endcsname @title\endcsname
+		\thmtlo@newentry
+		\ifthmt@isstarred
+			\@xa\def\csname ll@\thmt@envname\endcsname{%
+				\protect\ifthmt@listswap
+				\protect\else
+				\protect\numberline{\protect\let\protect\autodot\protect\@empty}%
+				\protect\fi
+				\csname fancythm@\csname thmt@envname\endcsname @title\endcsname
+				\ifx\@empty\thmt@shortoptarg\else\protect\thmtformatoptarg{\thmt@shortoptarg}\fi
+			}%
+		\else
+			\@xa\def\csname ll@\thmt@envname\endcsname{%
+				\protect\ifthmt@listswap
+				\csname fancythm@\csname thmt@envname\endcsname @title\endcsname~\csname the\thmt@envname\endcsname
+				\protect\else
+				\protect\numberline{\csname the\thmt@envname\endcsname}%
+				\csname fancythm@\csname thmt@envname\endcsname @title\endcsname
+				\protect\fi
+				\ifx\@empty\thmt@shortoptarg\else\protect\thmtformatoptarg{\thmt@shortoptarg}\fi
+			}%
+		\fi
+		\@xa\gdef\csname thmt@contentsline@\thmt@envname\endcsname{%
+			\thmt@contentslineShow
+		}%
+	\else
+		\thmtlo@newentry
+		\ifthmt@isstarred
+			\@xa\def\csname ll@\thmt@envname\endcsname{%
+				\protect\ifthmt@listswap
+				\protect\else
+				\protect\numberline{\protect\let\protect\autodot\protect\@empty}%
+				\protect\fi
+				\thmt@thmname
+				\ifx\@empty\thmt@shortoptarg\else\protect\thmtformatoptarg{\thmt@shortoptarg}\fi
+			}%
+		\else
+			\@xa\def\csname ll@\thmt@envname\endcsname{%
+				\protect\ifthmt@listswap
+				\thmt@thmname~\csname the\thmt@envname\endcsname
+				\protect\else
+				\protect\numberline{\csname the\thmt@envname\endcsname}%
+				\thmt@thmname
+				\protect\fi
+				\ifx\@empty\thmt@shortoptarg\else\protect\thmtformatoptarg{\thmt@shortoptarg}\fi
+			}%
+		\fi
+		\@xa\gdef\csname thmt@contentsline@\thmt@envname\endcsname{%
+			\thmt@contentslineShow
+		}%
+	\fi
+}
+
+% adding the functinality of the new \listoftheorems keys
+\renewcommand{\listoftheorems}[1][]{%
+	\begingroup
+	\setlisttheoremstyle{#1}%
+	\let\listfigurename\listtheoremname
+	\def\contentsline##1{%
+		\csname thmt@contentsline@##1\endcsname{##1}%
+	}%
+	\@for\thmt@envname:=\thmt@allenvs\do{%
+		\thmtlo@newentry
+	}%
+	\let\thref@starttoc\@starttoc
+	\def\@starttoc##1{\thref@starttoc{loe}}%
+	\@fileswfalse
+	\AtEndDocument{%
+		\if@filesw
+		\@ifundefined{tf@loe}{%
+			\expandafter\newwrite\csname tf@loe\endcsname
+			\immediate\openout \csname tf@loe\endcsname \jobname.loe\relax
+		}{}%
+		\fi
+	}%
+	\if\fancythm@listofthm@columns1
+		\if@fancythm@notitle@
+			\@starttoc{lof}%
+		\else
+			\listoffigures
+		\fi
+	\else
+		\if@fancythm@notitle@
+			\begin{multicols}{\fancythm@listofthm@columns}%
+				\@starttoc{lof}%
+			\end{multicols}
+		\else
+			\ifcsname chapter\endcsname	
+				\chapter*{\listfigurename
+					\@mkboth{%
+						\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+				\begin{multicols}{\fancythm@listofthm@columns}%
+					\@starttoc{lof}%
+				\end{multicols}
+			\else
+				\section*{\listfigurename
+					\@mkboth{%
+						\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+				\begin{multicols}{\fancythm@listofthm@columns}%
+					\@starttoc{lof}%
+				\end{multicols}
+			\fi
+		\fi
+	\fi
+	\endgroup
+}
+%%%%%%%%%%%%%%%%%%%%%
+\newif\if@fancythm@templates@
+
+\DeclareOption{templates}{\@fancythm@templates@true}
+\ProcessOptions\relax
+
+\if@fancythm@templates@
+	\RequirePackage{fancythm-styles}
+\fi
+\endinput
