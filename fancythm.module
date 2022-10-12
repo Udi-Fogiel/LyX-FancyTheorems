@@ -694,7 +694,7 @@ Style "List of Theorems"
 	  LabelString		"keys"
 	  Tooltip			"Insert wanted keys here"
 	  PassThru		1
-	  Mandatory		0
+	  Mandatory		1
 	  AutoInsert	1
 	EndArgument
 	LabelFont
