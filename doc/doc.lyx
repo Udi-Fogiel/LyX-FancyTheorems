@@ -303,23 +303,11 @@ option is used,
 \series bold
 fancythm
 \series default
- loads 
+ loads the tikz library 
 \series bold
-xcolor
+decorations.pathmorphing
 \series default
 ,
-\series bold
- tikz
-\series default
- with the 
-\series bold
-decorations.pathmorphing 
-\series default
-and 
-\series bold
-shadows 
-\series default
-libraries,
 \series bold
  varwidth
 \series default
@@ -731,7 +719,6 @@ To print a list of theorems go to \SpecialChar LyX
 \end_layout
 
 \begin_layout List of Theorems
-
 \begin_inset Argument 1
 status open
 
@@ -751,7 +738,6 @@ Now I will change the list format with the swapnumber key, and change the
 \end_layout
 
 \begin_layout List of Theorems
-
 \begin_inset Argument 1
 status open
 
