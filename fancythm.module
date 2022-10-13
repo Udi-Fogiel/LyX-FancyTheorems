@@ -94,7 +94,7 @@ Style Theorem
 	AddToToc              thm
 	IsTocCaption      0
 	Argument 1
-		LabelString    "Optinal Note"
+		LabelString    "Optional Note"
 		Tooltip        "Additional text appended to the theorem header"
 		IsTocCaption      1
 	EndArgument
@@ -143,7 +143,7 @@ Style Theorem*
 	AddToToc              thm
 	IsTocCaption      0
 	Argument 1
-		LabelString    "Optinal Note"
+		LabelString    "Optional Note"
 		Tooltip        "Additional text appended to the theorem header"
 		IsTocCaption      1
 	EndArgument
@@ -673,6 +673,9 @@ InsetLayout "Flex:set keys"
 	ParbreakIsNewline     true
 	KeepEmpty             true
 	FreeSpacing           true
+	Preamble
+		\usepackage{fancythm}
+	EndPreamble
 End
 
 Input theorems-case.inc

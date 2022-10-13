@@ -1,0 +1,4275 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrartcl
+\begin_preamble
+\usepackage{fancythm}
+\setfancythmkeys{rem*}{beginstyle={\begin{tcolorbox}[% the design is taken from tcolorbox's documentation
+enhanced, before skip=2mm, after
+skip=3mm,
+boxrule=0.4pt, left=5mm, right=2mm, top=1mm,
+bottom=1mm, colback=yellow!50, colframe=yellow!20!black,
+sharp corners, rounded corners=southeast,
+arc is angular,arc=3mm, underlay={%
+\path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+\path[draw=tcbcolframe,shorten <=-0.05mm,shorten >=-0.05mm]([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+\path[fill=yellow!50!black,draw=none] (interior.south west) rectangle node[white]{\Huge\bfseries !} ([xshift=4mm]interior.north west); },
+drop fuzzy shadow southeast]},
+endstyle=\end{tcolorbox}, 
+headformat=, 
+headpunct=, 
+postheadspace=0pt, 
+spaceabove=6pt, 
+spacebelow=8pt}
+
+\renewcommand{\tableofcontents}{%
+	\section*{\contentsname}
+	\begin{multicols}{2}
+	\@starttoc{toc}
+	\end{multicols}
+}
+
+% if pdflatex is used
+\usepackage{ifpdf}
+\ifpdf
+% set fonts for nicer pdf view
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+\fi
+
+\AtBeginDocument{\renewcommand{\ref}[1]{\mbox{\autoref{#1}}}}
+
+\def\thefigure{\unskip}
+\end_preamble
+\options templates
+\use_default_options true
+\begin_modules
+fancythm
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 1
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "linkcolor=RoyalPurple"
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "numbers=left,name=doc,firstnumber=last,language={[LaTeX]TeX},breaklines=true,linewidth={\textwidth},texcsstyle={*\upshape},commentstyle={\itshape\color{ForestGreen}},numberstyle={\color{gray}\footnotesize},tabsize=4"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Description of the module Fancy Theorems
+\end_layout
+
+\begin_layout Author
+Udi Fogiel
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "65text%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+
+\series bold
+\size small
+Abstract
+\end_layout
+
+\begin_layout Plain Layout
+With the module 
+\emph on
+Fancy
+\begin_inset space ~
+\end_inset
+
+Theorems
+\emph default
+ you can modify all the theorems layouts output appearance (except the proof
+ and case layouts), using a key-val syntax much like in thmtools.
+ All the theorems environments are defined using the \SpecialChar LaTeX
+ package 
+\series bold
+fancythm
+\series default
+, which rely heavily on the \SpecialChar LaTeX
+ package 
+\series bold
+thmtools
+\series default
+ .
+ It is recommended to read some of 
+\series bold
+thmtools
+\series default
+ documentation.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Preparation
+\end_layout
+
+\begin_layout Subsection
+Installation 
+\end_layout
+
+\begin_layout Standard
+Firstly, manually install the fancythm package.
+ The installation procedure is dependent on your \SpecialChar LaTeX
+ distribution, so I won't
+ explain how to do so here (it will probably just require you to copy the
+ fancythm folder to some directory, and then tell your latex \SpecialChar LaTeX
+ distribution
+ that you added a new folder to it's directories).
+\end_layout
+
+\begin_layout Standard
+To install the module 
+\emph on
+Fancy
+\begin_inset space ~
+\end_inset
+
+Theorems, 
+\emph default
+move the file 
+\family typewriter
+fancythm.module 
+\family default
+to the layouts folder in \SpecialChar LyX
+'s user directory (which can be found in 
+\family sans
+Help\SpecialChar menuseparator
+About Lyx
+\family default
+.).
+ After that reconfigure \SpecialChar LyX
+ via 
+\family sans
+Tools\SpecialChar menuseparator
+Reconfigure
+\family default
+, and restart \SpecialChar LyX
+.
+\end_layout
+
+\begin_layout Remark*
+Note that the \SpecialChar LaTeX
+ package 
+\series bold
+fancythm
+\series default
+ requires the packages 
+\series bold
+amsthm
+\series default
+, 
+\series bold
+thmtools 
+\series default
+and 
+\series bold
+multicols
+\series default
+.
+ If the 
+\series bold
+templates 
+\series default
+option is used, also 
+\series bold
+fancythm 
+\series default
+also loads 
+\series bold
+xcolor 
+\series default
+with 
+\series bold
+usenames 
+\series default
+and
+\series bold
+ dvipsnames 
+\series default
+options
+\series bold
+, tikz
+\series default
+ with the 
+\series bold
+decorations.pathmorphing 
+\series default
+and 
+\series bold
+shadows 
+\series default
+libraries,
+\series bold
+ varwidth
+\series default
+,
+\series bold
+ tcolorbox 
+\series default
+with the 
+\series bold
+most 
+\series default
+option.
+ It is recommended to check that all of these packages are installed.
+ 
+\end_layout
+
+\begin_layout Subsection
+Loading The Module
+\end_layout
+
+\begin_layout Standard
+At first load the module 
+\shape italic
+Fancy
+\begin_inset space ~
+\end_inset
+
+Theorems
+\shape default
+ in the document settings of your file, via 
+\family sans
+Documents\SpecialChar menuseparator
+Settings\SpecialChar menuseparator
+Modules
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+If you want to use the 
+\series bold
+templates
+\series default
+ option, write 
+\begin_inset Quotes eld
+\end_inset
+
+templates
+\begin_inset Quotes erd
+\end_inset
+
+ in the document class options in the document settings of your file.
+\end_layout
+
+\begin_layout Section
+Basics
+\end_layout
+
+\begin_layout Subsection
+Designing Theorems
+\end_layout
+
+\begin_layout Standard
+Suppose you would like to state the Pythagorean theorem in your document.
+ To do so, go to \SpecialChar LyX
+'s environment selection combobox, select the Theorem layout
+ and write the theorem's content (if you would to write an optional note,
+ go to 
+\family sans
+Insert\SpecialChar menuseparator
+Optional
+\family default
+ Note, or press 
+\family sans
+Alt+A 1
+\family default
+).
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Pythagoras
+\end_layout
+
+\end_inset
+
+ In any right triangle, the area of the square whose side is the hypotenuse
+ (the side opposite the right angle) is equal to the sum of the areas of
+ the squares whose sides are the two legs (the two sides that meet at a
+ right angle).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To change the appearance of the theorems in the output PDF file insert the
+ 
+\family sans
+Set Keys
+\family default
+ layout via 
+\family sans
+Insert\SpecialChar menuseparator
+Custom Insets\SpecialChar menuseparator
+Set Keys
+\family default
+, in the argument inset (called envs) write a comma separated list of all
+ the environments names that you want to change (for a list of all the environme
+nts names see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Layouts-Information"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), and in the inset itself write the keys appropriate values.
+ For example, we will change the note braces to be square brackets, we will
+ add a symbol to mark the end of the theorem and add more vertical space
+ before the theorem.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex set keys
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+thm
+\end_layout
+
+\end_inset
+
+leftnotebrace=[,rightnotebrace=],qed=$
+\backslash
+star$,spaceabove=12pt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark*
+The latex command of that layout is 
+\family typewriter
+
+\backslash
+setfancythmkeys{<envs>}{<key=val>}
+\family default
+, where 
+\family typewriter
+<envs>
+\family default
+ is a comma separated list of all the environments names that you want to
+ change, and 
+\family typewriter
+<key=val> 
+\family default
+is a comma separated list of the keys you want to change.
+ 
+\end_layout
+
+\begin_layout Standard
+Now we should be able to see the changes in all the following theorems (with
+ environment name 
+\series bold
+thm
+\series default
+).
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Pythagoras
+\end_layout
+
+\end_inset
+
+ In any right triangle, the area of the square whose side is the hypotenuse
+ (the side opposite the right angle) is equal to the sum of the areas of
+ the squares whose sides are the two legs (the two sides that meet at a
+ right angle).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following diagram
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Credit to thmtools
+\end_layout
+
+\end_inset
+
+ demonstrates some of the possible theorems keys.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename thmtools_figure.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Settable parameters of a theorem style.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For a full list of keys and their description, see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Theorems-Keys"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+There is an option to use preview (via 
+\family sans
+Insert\SpecialChar menuseparator
+Preview
+\family default
+) with the theorems layouts, but, to see the keys that you defined you need
+ to include the 
+\family sans
+Set Keys
+\family default
+ layout in the preview box, or, set the keys in the preamble (and make sure
+ that 
+\family sans
+Tools\SpecialChar menuseparator
+Preference\SpecialChar menuseparator
+Look & Feel\SpecialChar menuseparator
+Display\SpecialChar menuseparator
+Instant Preview
+\family default
+ is on).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Remark*
+For example, this paragraph is written with the Remark* layout (its keys
+ are set in the preamble) inside a preview box.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The templates Option
+\end_layout
+
+\begin_layout Standard
+Using the 
+\series bold
+templates
+\series default
+ option gives you access predefined styles for theorems.
+ To use them, insert the 
+\family sans
+Set Keys
+\family default
+ layout, as before, and in the keys list write name of the style.
+ for example, here is a theorem with the 
+\family typewriter
+fancycolorcoded
+\family default
+ style (for a full list of styles see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Keys---templates"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex set keys
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+thm
+\end_layout
+
+\end_inset
+
+fancycolorcoded
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Pythagoras
+\end_layout
+
+\end_inset
+
+ In any right triangle, the area of the square whose side is the hypotenuse
+ (the side opposite the right angle) is equal to the sum of the areas of
+ the squares whose sides are the two legs (the two sides that meet at a
+ right angle).
+\end_layout
+
+\begin_layout Subsection
+List of Theorems
+\end_layout
+
+\begin_layout Standard
+To print a list of theorems go to \SpecialChar LyX
+'s environment selection combobox, select
+ the List of Theorems layout, and set the keys in the keys inset.
+ Here are two short examples:
+\end_layout
+
+\begin_layout List of Theorems
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+ignoreall,show={thm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now I will change the list format with the swapnumber key, and change the
+ title with the title key
+\end_layout
+
+\begin_layout List of Theorems
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+ignoreall,show={thm},swapnumber,title=My Title
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For a full list of keys and their description, see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:List-of-Theorems"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Detailed Information
+\end_layout
+
+\begin_layout Standard
+In the following section, if a key description is titled in violet color,
+ it is similar to a key from 
+\family typewriter
+thmtools
+\family default
+, if it is green, it is a new key defined in 
+\family typewriter
+fancythm
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+Theorems Keys
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Theorems-Keys"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex set keys
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+defn
+\end_layout
+
+\end_inset
+
+headformat={
+\backslash
+lower 7pt
+\backslash
+hbox{
+\backslash
+makebox[60pt][r]{
+\backslash
+NOTE}}},
+\end_layout
+
+\begin_layout Plain Layout
+
+			notefont=
+\backslash
+color{violet}
+\backslash
+bfseries,
+\end_layout
+
+\begin_layout Plain Layout
+
+			headpunct=,
+\end_layout
+
+\begin_layout Plain Layout
+
+			postheadspace=15pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			rightnotebrace=,
+\end_layout
+
+\begin_layout Plain Layout
+
+			leftnotebrace=,
+\end_layout
+
+\begin_layout Plain Layout
+
+			postheadhook=
+\backslash
+begin{minipage}[t][][c]{0.65
+\backslash
+textwidth},
+\end_layout
+
+\begin_layout Plain Layout
+
+			prefoothook=
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex set keys
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+lem
+\end_layout
+
+\end_inset
+
+headformat={
+\backslash
+lower 7pt
+\backslash
+hbox{
+\backslash
+makebox[60pt][r]{
+\backslash
+NOTE}}},
+\end_layout
+
+\begin_layout Plain Layout
+
+			notefont=
+\backslash
+color{PineGreen}
+\backslash
+bfseries,
+\end_layout
+
+\begin_layout Plain Layout
+
+			headpunct=,
+\end_layout
+
+\begin_layout Plain Layout
+
+			postheadspace=15pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			rightnotebrace=,
+\end_layout
+
+\begin_layout Plain Layout
+
+			leftnotebrace=,
+\end_layout
+
+\begin_layout Plain Layout
+
+			postheadhook=
+\backslash
+begin{minipage}[t][][c]{0.65
+\backslash
+textwidth},
+\end_layout
+
+\begin_layout Plain Layout
+
+			prefoothook=
+\backslash
+end{minipage},
+\end_layout
+
+\begin_layout Plain Layout
+
+			bodyfont=
+\backslash
+normalfont
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+headfont
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar TeX
+ code.
+
+\series default
+ Executed just before the head of the theorem is typeset, inside a group.
+ Intended use it to put font switches here.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+notefont
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar TeX
+ code.
+ 
+\series default
+Executed just before the note in the head is typeset, inside a group.
+ Intended use it to put font switches here.
+ Formatting also applies to the braces around the note.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+bodyfont
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar TeX
+ code.
+ 
+\series default
+Executed before the begin part of the theorem ends, but before all afterheadhook
+s.
+ Intended use it to put font switches here.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+headpunct
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar TeX
+ code
+\series default
+, usually a single character.
+ Put at the end of the theorem's head, prior to linebreaks or indents.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+headformat
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar LaTeX
+ code
+\series default
+,
+\series bold
+ 
+\series default
+using the special placeholders 
+\family typewriter
+
+\backslash
+NUMBER
+\family default
+, 
+\family typewriter
+
+\backslash
+NAME
+\family default
+ and 
+\family typewriter
+
+\backslash
+NOTE
+\family default
+, which correspond to the (formatted, including the braces for 
+\family typewriter
+
+\backslash
+NOTE
+\family default
+ etc.) three parts of a theorem's head.
+ This can be used to override the usual style 
+\begin_inset Quotes eld
+\end_inset
+
+1.1 Theorem (Foo)
+\begin_inset Quotes erd
+\end_inset
+
+, for example to let the numbers protrude in the margin or put them after
+ the name.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark*
+The 
+\series bold
+headformat
+\series default
+ key does not accept the keywords 
+\series bold
+margin
+\series default
+ and 
+\series bold
+swapnumber
+\series default
+ as it would with thmtools
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+postheadspace
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: a length or a glue (with units).
+ 
+\series default
+Horizontal space inserted after the entire head of the theorem, before the
+ body.
+ Does probably not apply (or make sense) for styles that have a line-break
+ after the head.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+headindent
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: a length or a glue (with units).
+ 
+\series default
+Horizontal space inserted before the head.
+ Some publishers like 
+\family typewriter
+
+\backslash
+parindent
+\family default
+ here for remarks, for example.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+title
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar TeX
+ code.
+ 
+\series default
+The title of the theorem.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+name=name
+\end_layout
+
+\end_inset
+
+ Same as 
+\family typewriter
+title
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+heading
+\end_layout
+
+\end_inset
+
+ same as 
+\family typewriter
+title
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+preheadhook
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar LaTeX
+ code.
+ 
+\series default
+This code will be executed at the beginning of the environment, even before
+ vertical spacing is added and the head is typeset.
+ However, it is already within the group defined by the environment.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+postheadhook
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar LaTeX
+ code.
+ 
+\series default
+This code will be executed after the call to the original begin-theorem
+ code.
+ Note that all backends seem to delay typesetting the actual head, so code
+ here should probably enter horizontal mode to be sure it is after the head,
+ but this will change the spacing/wrapping behaviour if your body starts
+ with another list.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+prefoothook
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar LaTeX
+ code.
+
+\series default
+ This code will be executed at the end of the body of the environment.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+postfoothook
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar LaTeX
+ code.
+
+\series default
+ This code will be executed at the end of the environment, even after eventual
+ vertical spacing, but still within the group defined by the environment.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+refname
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: one string, or two strings separated by a comma (no spaces).
+ 
+\series default
+This is the name of the theorem as used by 
+\family typewriter
+
+\backslash
+autoref
+\family default
+, 
+\family typewriter
+
+\backslash
+cref
+\family default
+ and friends.
+ If it is two strings, the second is the plural form used by 
+\family typewriter
+
+\backslash
+cref
+\family default
+.
+ Default value is the value of 
+\family typewriter
+name
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+leftnotebrace
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: one character
+\series default
+, the opening symbol to use around a theorem's note.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+rightnotebrace
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: one character
+\series default
+, the closing symbol to use around a theorem's note.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+spaceabove
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: a length or a glue (with units).
+ 
+\series default
+Vertical space above the theorem, possibly discarded if the theorem is at
+ the top of the page.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+spacebelow
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: a length or a glue (with units).
+ 
+\series default
+Vertical space after the theorem, possibly discarded if the theorem is at
+ the top of the page.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+qed
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: one character, 
+\series default
+the closing mark of the theorem (as with proof and 
+\family typewriter
+
+\backslash
+qedsymbol
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+parent
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: a counter name.
+
+\series default
+ The theorem will be reset whenever that counter is incremented.
+ Usually, this will be a sectioning level, 
+\family typewriter
+chapter
+\family default
+ or 
+\family typewriter
+section
+\family default
+.
+ If the input is not a counter name, the theorem will become independent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+numberwithin
+\end_layout
+
+\end_inset
+
+ Same as 
+\family typewriter
+parent
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+within
+\end_layout
+
+\end_inset
+
+ Same as 
+\family typewriter
+parent
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+numbered
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: one of the keywords 
+\family typewriter
+yes
+\family default
+ or 
+\family typewriter
+no
+\family default
+.
+ 
+\series default
+The theorem will be numbered, or not numbered.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+sibling
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: a counter name.
+ 
+\series default
+The theorem will use this counter for numbering.
+ Usually, this is the name of another theorem environment.
+ If the input is not a counter name, the theorem will become independent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+numberlike
+\end_layout
+
+\end_inset
+
+ Same as 
+\family typewriter
+sibling
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+sharenumber
+\end_layout
+
+\end_inset
+
+ Same as 
+\family typewriter
+sibling
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark*
+The following keys are not supported: style, Refname, shaded, thmbox, ,notebrace
+s (replaced with leftnotebrace and rightnotebrace), mdframed.
+\end_layout
+
+\begin_layout Subsection
+Layouts Information
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Layouts-Information"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.9}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[
+\backslash
+textwidth][c]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+scalebox{0.8}{%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="27" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Environment Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layout Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Default title
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Default headfont
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Default bodyfont
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+thm
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Theorem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Theorem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+thm*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Theorem*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Theorem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+cor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Corollary
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Corollary
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+cor*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Corollary*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Corollary
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+lem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lemma
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lemma
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+lem*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lemma*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lemma
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+prop
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Proposition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Proposition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+prop*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Proposition*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Proposition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+conjecture
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conjecture
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conjecture
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+conjecture*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conjecture*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conjecture
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+fact
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fact
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fact
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+fact*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fact*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fact
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+defn
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Definition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Definition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+defn*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Definition*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Definition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+example
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Example
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Example
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+example*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Example*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Example
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+problem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+problem*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problem*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+xca
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exercise
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exercise
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+xca*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exercise*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exercise
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Solution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Solution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sol*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Solution*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Solution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+bfseries
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+mdseries
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Remark
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Remark
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+<empty>
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rem*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Remark*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Remark
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+<empty>
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+claim
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Claim
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Claim
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+<empty>
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+claim*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Claim*
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Claim
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\backslash
+itshape
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+<empty>
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}}
+\backslash
+vspace{2mm}
+\backslash
+def
+\backslash
+thetable{
+\backslash
+unskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Names and default fonts of the environments
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{2}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[
+\backslash
+textwidth][c]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+scalebox{0.8}{%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+headpunct={.}
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+postheadspace=1em
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+headindent=0pt
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+preheadhook=<empty>
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+postheadhook=<empty>
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+prefoothook=<empty>
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+postfoothook=<empty>
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+rightnotebrace=)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+leftnotebrace=(
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+spaceabove=6pt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+spacebelow=6pt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+numberwithin=section
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+sibling=<empty>
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+qed=<empty>
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+notefont=<empty>
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+refname=theorems title
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+numbered=true/false (unstarred/starred)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size footnotesize
+headformat=
+\backslash
+NAME
+\backslash
+ 
+\backslash
+NUMBER
+\backslash
+NOTE/ 
+\backslash
+NAME
+\backslash
+NOTE (unstarred/starred)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}}
+\backslash
+vspace{2mm}
+\backslash
+def
+\backslash
+thetable{
+\backslash
+unskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Default keys values
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+List of Theorems Keys
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:List-of-Theorems"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+title
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: title of 
+\family typewriter
+
+\backslash
+listoftheorems.
+
+\family default
+\series default
+ The default is stored in the macro 
+\family typewriter
+
+\backslash
+listtheoremname
+\family default
+ and is initially 
+\begin_inset Quotes eld
+\end_inset
+
+List of Theorems
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+ignore
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: comma seperated list of theorem environment names.
+ 
+\series default
+Filter out things by environment names.
+ Default value is list of all defined theorem environments.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+ignoreall
+\end_layout
+
+\end_inset
+
+ Ignore every theorem environment.
+ This key is usually followed by keys show and onlynamed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+show
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: comma seperated list of theorem environment names.
+
+\series default
+ Leave theorems that belong to specified list and filter out others.
+ Default value is list of all defined theorem environments.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+showall
+\end_layout
+
+\end_inset
+
+ The opposite effect of ignoreall.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+onlynamed
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: comma seperated list of theorem environment names.
+ 
+\series default
+Leave things that are given an optional argument and belong to specified
+ list, and filter out others.
+ Default value is list of all defined theorem environments.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+swapnumber
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: true or false.
+ 
+\series default
+If set to true, numbers will appear after the theorem name in the list.
+ Initially false and default value is true.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+numwidth
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: a length or a glue (with units).
+ 
+\series default
+If 
+\family typewriter
+swapnumber=false
+\family default
+, the theorem number is typeset in a box of of width numwidth.
+ Initially 1.5pc for AMS classes and 2.3em for others.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+columns
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: a positive integer.
+
+\series default
+ If set to an integer bigger than 1, the list of theorems will be printed
+ in a multicol environment with number of columns as the input.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+notitle
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: true or false.
+
+\series default
+ Is set to true, the list of theorems will print with no title.
+ Initially false.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Keys - templates option
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Keys---templates"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following is the full list of styles defined with the 
+\series bold
+templates
+\series default
+ option:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+default
+\family default
+, 
+\family typewriter
+named
+\family default
+, 
+\family typewriter
+colorcoded
+\family default
+, 
+\family typewriter
+fancycolorcoded
+\family default
+, 
+\family typewriter
+thmbox
+\family default
+, 
+\family typewriter
+margins
+\family default
+, 
+\family typewriter
+tcb
+\family default
+, 
+\family typewriter
+tcbribbon
+\family default
+, 
+\family typewriter
+tcbdiamond
+\family default
+, and 
+\family typewriter
+bclogo
+\family default
+.
+\end_layout
+
+\begin_layout Remark*
+Actually, the keys default, named, and margins are defined in the basic
+ module (without the 
+\series bold
+templates
+\series default
+ option).
+\end_layout
+
+\begin_layout Standard
+To use each of these styles, write it's name in the key list in the 
+\family sans
+Set Keys
+\family default
+ layout.
+ Non of these keys accept value, except margins which accepts a length which
+ represent the distance from the title to the body of the theorem, and thmbox
+ which can get three values: S, M, L (for small, medium and large).
+\end_layout
+
+\begin_layout Standard
+To see all the styles of all the layouts see the file 
+\family typewriter
+test_fancythm.pdf
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+In addition to all the style keys, the 
+\series bold
+template
+\series default
+ option adds three additional keys:
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+color
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: name of a defined color color, or a mix of several, using xcolor
+ syntax.
+
+\series default
+ It will define the color of all the styles related to the theorem.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+beginstyle
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar LaTeX
+ code.
+ 
+\series default
+This code will be executed at the beginning of the environment, but after
+ vertical spacing is added and the head is typeset.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+endstyle
+\end_layout
+
+\end_inset
+
+ 
+\series bold
+Value: \SpecialChar LaTeX
+ code.
+
+\series default
+ This code will be executed at the end of the environment, but before eventual
+ vertical spacing.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Support for Bilingual And RTL Documents
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Bilingual And RTL Documents
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+RTL Documents
+\end_layout
+
+\begin_layout Standard
+As this module uses 
+\series bold
+amsthm
+\series default
+, it is recommended to compile RTL files that includes the Fancy
+\begin_inset space ~
+\end_inset
+
+Theorem module with XeLaTeX and polyglossia, as there are known issues with
+ babel and amsthm.
+ Also, all the non-symmetric styles defined in the 
+\series bold
+templates
+\series default
+ option will not display correctly, unless the 
+\series bold
+bidi
+\series default
+ package is used.
+ 
+\end_layout
+
+\begin_layout Subsection
+Bilingual Documents
+\end_layout
+
+\begin_layout Standard
+the module will support different fonts for different languages in the theorems
+ environments by default if you use polyglossia, otherwise there would be
+ a need to specify it manually with the relevant font keys.
+ 
+\end_layout
+
+\begin_layout Section
+\start_of_appendix
+Documentation of fancythm
+\end_layout
+
+\begin_layout Standard
+this section is incomplete and will be uploaded soon.
+\end_layout
+
+\begin_layout Subsection
+Initialization 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={1-5}]{fancythm.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Keys
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={10-142}]{fancythm.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Defaults
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={147-205}]{fancythm.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Theorems Deceleration
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={210-263}]{fancythm.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+List of Theorems
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={268-343}]{fancythm.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Documentation of fancythm-styles
+\end_layout
+
+\begin_layout Standard
+this section is incomplete and will be uploaded soon.
+\end_layout
+
+\begin_layout Subsection
+Initialization 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={1-8}]{fancythm-styles.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Tcbset
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={10-209}]{fancythm-styles.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+RTL switches
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={211-261}]{fancythm-styles.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Style Keys
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[linerange={263-389}]{fancythm-styles.sty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
