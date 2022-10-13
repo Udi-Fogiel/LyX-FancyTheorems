@@ -1,0 +1,389 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fancythm-styles}[2022/10/13]
+
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\usetikzlibrary{decorations.pathmorphing,shadows} % forbclogo
+\RequirePackage{varwidth}
+\RequirePackage[most]{tcolorbox}
+
+\tcbset{%
+	fancythm@right@thmbox/.style={%
+		enhanced,
+		breakable,
+		sharp corners=all,
+		top=0mm,
+		bottom=0mm,
+		left=0mm,
+		colback=white,
+		colframe=white,
+		colbacktitle=white,
+		coltitle=black,
+		attach boxed title to top right,
+		boxed title style={empty, size=minimal, bottom=1.5mm},
+		overlay unbroken ={
+			\draw (title.south east)--(title.south west);
+			\draw ([xshift=-3.5mm]frame.north east)|-%
+			(frame.south west)--(frame.north west);},
+		overlay first={
+			\draw (title.south east)--(title.south west); 
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);
+			\draw (frame.north west)--(frame.south west);},
+		overlay middle={
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);
+			\draw (frame.north west)--(frame.south west);},
+		overlay last={
+			\draw ([xshift=-3.5mm]frame.north east)|-%
+			(frame.south west)--(frame.north west);},
+	},
+	fancythm@right@thmboxS/.style={fancythm@right@thmbox, 
+		overlay unbroken ={
+			\draw (title.south east)--(title.south west);
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);},
+		overlay first={
+			\draw (title.south east)--(title.south west); 
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);},
+		overlay middle={
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);},
+		overlay last={
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);},
+	},
+	fancythm@right@thmboxL/.style={fancythm@right@thmbox, 
+		overlay unbroken ={
+			\draw (title.south west)--(title.south east);
+			\draw ([xshift=-3.5mm]frame.north east)|-([xshift=-15mm]frame.south east);},
+		overlay first={
+			\draw (title.south east)--(title.south west); 
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);},
+		overlay middle={
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);},
+		overlay last={
+			\draw ([xshift=-3.5mm]frame.north east)|-([xshift=-15mm]frame.south east);},
+	},
+	fancythm@right@thmboxLQ/.style={fancythm@right@thmbox, 
+		overlay unbroken ={
+			\draw (title.south east)--(title.south west);
+			\draw ([xshift=-3.5mm]frame.north east)|-([xshift=-15mm]frame.south east);
+			\node[anchor=west] at (frame.south west) {$\square$};},
+		overlay first={
+			\draw (title.south east)--(title.south west); 
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);},
+		overlay middle={
+			\draw ([xshift=-3.5mm]frame.north east)--([xshift=-3.5mm]frame.south east);},
+		overlay last={
+			\draw ([xshift=-3.5mm]frame.north east)|-([xshift=-15mm]frame.south east);
+			\node[anchor=west] at (frame.south west) {$\square$};},
+	},  
+    fancythm@left@thmbox/.style={fancythm@right@thmbox,
+		left=4mm,right=0mm,
+        attach boxed title to top left,
+        boxed title style={empty, size=minimal, bottom=1.5mm},
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)|-%
+                  (frame.south east)--(frame.north east);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);
+            \draw (frame.north east)--(frame.south east);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);
+            \draw (frame.north east)--(frame.south east);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)|-%
+                  (frame.south east)--(frame.north east);},
+        },
+    fancythm@left@thmboxS/.style={fancythm@left@thmbox, 
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        },
+    fancythm@left@thmboxL/.style={fancythm@left@thmbox, 
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);},
+        },
+    fancythm@left@thmboxLQ/.style={fancythm@left@thmbox, 
+        overlay unbroken ={
+            \draw (title.south west)--(title.south east);
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);
+            \node[anchor=east] at (frame.south east) {$\square$};},
+        overlay first={
+            \draw (title.south west)--(title.south east); 
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay middle={
+            \draw ([xshift=3.5mm]frame.north west)--([xshift=3.5mm]frame.south west);},
+        overlay last={
+            \draw ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);
+            \node[anchor=east] at (frame.south east) {$\square$};},
+    },
+	fancythm@tcbribbon@left/.style={enhanced,breakable,
+		colback=black!5,
+		colframe=black!50,
+		boxrule=0.2mm,
+		attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+		varwidth boxed title*=-3cm,
+		boxed title style={frame code={%
+		\path[fill=tcbcolback!30!black]
+		([yshift=-1mm,xshift=-1mm]frame.north west)
+		arc[start angle=0,end angle=180,radius=1mm]
+		([yshift=-1mm,xshift=1mm]frame.north east)
+		arc[start angle=180,end angle=0,radius=1mm];
+		\path[left color=tcbcolback!60!black,right color=tcbcolback!60!black,
+		middle color=tcbcolback!80!black]
+		([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+		[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+		-- (frame.south east) -- (frame.south west)
+		-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+		[sharp corners]-- cycle;
+		},
+		interior engine=empty,
+		},
+		extras middle and last pre={top=0mm}
+	},
+	fancythm@tcbribbon@right/.style={fancythm@tcbribbon@left,
+		attach boxed title to top right={xshift=-1cm,yshift*=1mm-\tcboxedtitleheight},
+		boxed title style={frame code={%
+		\path[fill=tcbcolback!30!black]
+		([yshift=-1mm,xshift=-1mm]frame.north west)
+		arc[start angle=0,end angle=180,radius=1mm]
+		([yshift=-1mm,xshift=1mm]frame.north east)
+		arc[start angle=180,end angle=0,radius=1mm];
+		\path[left color=tcbcolback!60!black,right color=tcbcolback!60!black,
+		middle color=tcbcolback!80!black]
+		([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+		[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+		-- (frame.south east) -- (frame.south west)
+		-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+		[sharp corners]-- cycle;
+		},
+		interior engine=empty,
+		},
+	},
+	fancythm@tcb@diamond/.style={%
+		enhanced,breakable,attach boxed title to top center={%
+		yshift=-0.25mm-\tcboxedtitleheight/2,yshifttext=2mm-\tcboxedtitleheight/2},
+		boxed title style={boxrule=0.5mm,
+		frame code={ \path[tcb fill frame] ([xshift=-4mm]frame.west)
+		-- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
+		-- (frame.south east) -- (frame.south west) -- cycle; },
+		interior code={ \path[tcb fill interior] ([xshift=-2mm]interior.west)
+		-- (interior.north west) -- (interior.north east)
+		-- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
+		-- cycle;}}
+	},
+	fancythm@colorcoded@right/.style={%
+		enhanced,breakable,frame hidden,
+		boxrule=0pt,rightrule=3pt,boxsep=0pt,sharp corners,
+		left=0pt,right*=10pt,top=0mm,bottom=0mm,
+	},
+	fancythm@colorcoded@left/.style={%
+		fancythm@colorcoded@right,
+		leftrule=3pt,rightrule=0pt,
+		left*=10pt,right=0pt,
+	},
+	fancythm@bclogo@left/.style={%
+		enhanced,breakable,boxrule=-1pt,boxsep=0pt,arc=2mm,toptitle=3mm,
+		right=1mm,pad at break=2mm,leftrule=1pt,top=3mm,drop fuzzy shadow,
+		rightrule=1pt,toprule=1pt,left=7mm,bottomrule=1pt
+	},
+	fancythm@bclogo@right/.style={%
+		enhanced,breakable,boxrule=-1pt,boxsep=0pt,arc=2mm,toptitle=3mm,
+		left=1mm,pad at break=2mm,leftrule=1pt,top=3mm,drop fuzzy shadow southwest,
+		rightrule=1pt,toprule=1pt,right=7mm,bottomrule=1pt
+	}
+}
+
+\def\fancythm@thmbox@side{fancythm@left@thmbox}
+\def\fancythm@colorcoded@side{fancythm@colorcoded@left}
+\def\fancythm@tcb@ribbon{fancythm@tcbribbon@left}
+\def\fancythm@bclogo@side{fancythm@bclogo@left}
+
+\AtBeginDocument{%
+	\@ifundefined{if@RTL}{}{%
+		\def\fancythm@colorcoded@RTL{%
+			\if@RTL
+				\def\fancythm@colorcoded@dir{east}
+				\def\fancythm@colorcoded@side{fancythm@colorcoded@right}%
+			\else
+				\def\fancythm@colorcoded@dir{west}
+				\def\fancythm@colorcoded@side{fancythm@colorcoded@left}%
+			\fi
+		}%
+		\def\fancythm@thmbox@RTL{%
+			\if@RTL
+				\def\fancythm@thmbox@side{fancythm@right@thmbox}%
+			\else
+				\def\fancythm@thmbox@side{fancythm@left@thmbox}%
+			\fi
+		}%
+		\def\fancythm@tcbribbon@RTL{%
+			\if@RTL
+			\def\fancythm@tcb@ribbon{fancythm@tcbribbon@right}%
+			\else
+			\def\fancythm@tcb@ribbon{fancythm@tcbribbon@left}%
+			\fi
+		}%
+		\def\fancythm@bclogo@RTL{%
+			\if@RTL
+			\def\fancythm@bclogo@side{fancythm@bclogo@right}%
+			\def\fancythm@bclogo@xshift{-4mm}%
+			\def\fancythm@bclogo@dir{east}%
+			\else
+			\def\fancythm@bclogo@side{fancythm@bclogo@left}%
+			\def\fancythm@bclogo@xshift{4mm}%
+			\def\fancythm@bclogo@dir{west}%
+			\fi
+		}%
+	}%
+}	
+
+\def\fancythm@colorcoded@dir{west}
+\def\fancythm@bclogo@xshift{4mm}
+\def\fancythm@bclogo@dir{west}
+\def\fancythm@colorcoded@RTL{}
+\def\fancythm@thmbox@RTL{}
+\def\fancythm@tcbribbon@RTL{}
+\def\fancythm@bclogo@RTL{}
+
+\def\define@fancythm@style#1{%
+	\define@fancythm@key{#1}{beginstyle}
+	\define@fancythm@key{#1}{endstyle}
+	\define@key{fancythm@#1}{color}{%
+		\colorlet{fancythm@#1@color}{##1}%
+	}%
+	\define@key{fancythm@#1}{colorcoded}[\relax]{%
+		\setkeys{fancythm@#1}{% 
+			default,
+			beginstyle={%
+				\fancythm@colorcoded@RTL
+				\begin{tcolorbox}[
+					\fancythm@colorcoded@side,
+					colback=white,
+					borderline \fancythm@colorcoded@dir={3pt}{0pt}{fancythm@#1@color}
+				]%
+			},
+			endstyle=\end{tcolorbox}
+		}%
+	}%
+	\define@key{fancythm@#1}{fancycolorcoded}[\relax]{%
+		\setkeys{fancythm@#1}{% 
+			default,
+			beginstyle={%
+				\fancythm@colorcoded@RTL
+				\begin{tcolorbox}[
+					\fancythm@colorcoded@side,
+					borderline \fancythm@colorcoded@dir={3pt}{0pt}{fancythm@#1@color},
+					colback=fancythm@#1@color!7,
+					boxsep=3mm,
+					bottom=-1mm,
+					top=-1mm
+				]%
+			},
+			endstyle=\end{tcolorbox},
+		}%
+		\@xa\g@addto@macro\csname fancythm@#1@headfont\endcsname{\color{fancythm@#1@color!70!black}}%
+	}%
+	\define@key{fancythm@#1}{thmbox}[]{%
+		\setkeys{fancythm@#1}{%
+			default,
+			headformat=\global\let\fancythm@note\NOTE,
+			headpunct=,
+			postheadspace=0em,
+			postheadhook={%
+				\fancythm@thmbox@RTL
+				\begin{tcolorbox}[
+					\fancythm@thmbox@side##1,
+					fonttitle=\normalfont\fancythm@lang@font\csname fancythm@#1@headfont\endcsname,
+					title=\csname #1title\endcsname\csname the#1\endcsname\fancythm@note\csname fancythm@#1@headpunct\endcsname,
+					fontupper=\normalfont\fancythm@lang@font\csname fancythm@#1@bodyfont\endcsname
+				]%
+			},
+			prefoothook=\end{tcolorbox},
+		}%
+	}%
+	\define@key{fancythm@#1}{tcb}[\relax]{%
+		\setkeys{fancythm@#1}{%
+			thmbox,
+			postheadhook={%
+				\begin{tcolorbox}[%
+					breakable,enhanced,
+					colback=fancythm@#1@color!5!white,
+					colframe=fancythm@#1@color!75!black,
+					fonttitle=\normalfont\fancythm@lang@font\csname fancythm@#1@headfont\endcsname,
+					title=\csname #1title\endcsname\csname the#1\endcsname\fancythm@note\csname fancythm@#1@headpunct\endcsname,
+					fontupper=\normalfont\fancythm@lang@font\csname fancythm@#1@bodyfont\endcsname
+				]%
+			}
+		}%
+	}%
+	\define@key{fancythm@#1}{tcbribbon}[\relax]{%
+		\setkeys{fancythm@#1}{%
+			thmbox,
+			postheadhook={%
+				\fancythm@tcbribbon@RTL
+				\begin{tcolorbox}[
+					\fancythm@tcb@ribbon,
+					colbacktitle=fancythm@#1@color,
+					fonttitle=\normalfont\fancythm@lang@font\csname fancythm@#1@headfont\endcsname,
+					title=\csname #1title\endcsname\csname the#1\endcsname\fancythm@note\csname fancythm@#1@headpunct\endcsname,
+					fontupper=\normalfont\fancythm@lang@font\csname fancythm@#1@bodyfont\endcsname,
+					colback=fancythm@#1@color!10!white
+				]%
+			}
+		}%
+	}%
+	\define@key{fancythm@#1}{tcbdiamond}[\relax]{%
+		\setkeys{fancythm@#1}{%
+			thmbox,
+			postheadhook={%
+				\begin{tcolorbox}[
+					fancythm@tcb@diamond,
+					colframe=fancythm@#1@color!50!black,
+					colback=fancythm@#1@color!10!white,
+					colbacktitle=fancythm@#1@color!5!yellow!10!white,
+					coltitle=black,
+					fonttitle=\normalfont\fancythm@lang@font\csname fancythm@#1@headfont\endcsname,
+					title=\csname #1title\endcsname\csname the#1\endcsname\fancythm@note\csname fancythm@#1@headpunct\endcsname,
+					fontupper=\normalfont\fancythm@lang@font\csname fancythm@#1@bodyfont\endcsname
+				]%
+			}
+		}%
+	}%
+	\define@key{fancythm@#1}{bclogo}[\relax]{%
+		\setkeys{fancythm@#1}{%
+			thmbox,
+			postheadhook={%
+				\fancythm@bclogo@RTL
+				\begin{tcolorbox}[%
+					\fancythm@bclogo@side,
+					colframe=fancythm@#1@color!50!white,
+					colback=fancythm@#1@color!10!white,
+					colbacktitle=fancythm@#1@color!10!white,
+					coltitle=black,
+					fonttitle=\normalfont\fancythm@lang@font\large\csname fancythm@#1@headfont\endcsname,
+					title=\csname #1title\endcsname\csname the#1\endcsname\fancythm@note\csname fancythm@#1@headpunct\endcsname,
+					fontupper=\normalfont\fancythm@lang@font\csname fancythm@#1@bodyfont\endcsname,
+					overlay unbroken and first={\node[inner sep=0pt] (logo) at ([xshift=\fancythm@bclogo@xshift,yshift=-5mm]frame.north \fancythm@bclogo@dir) {\csname fancythm@#1@logo\endcsname};
+					\draw[black,line width=2pt,decorate=true,decoration=snake] (logo) -- ([xshift=\fancythm@bclogo@xshift,yshift=1.5mm]frame.south \fancythm@bclogo@dir);},
+					overlay middle and last={\draw[black,line width=2pt,decorate=true,decoration=snake] ([xshift=\fancythm@bclogo@xshift,yshift=-1.5mm]frame.north \fancythm@bclogo@dir) -- ([xshift=\fancythm@bclogo@xshift,yshift=1.5mm]frame.south \fancythm@bclogo@dir);}
+				]%
+			}
+		}%
+	}%
+}
+\endinput

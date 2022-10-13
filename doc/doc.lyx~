@@ -299,17 +299,25 @@ multicols
 \series bold
 templates 
 \series default
-option is used, 
+option is used, also 
 \series bold
-fancythm
+fancythm 
 \series default
- loads 
+also loads 
 \series bold
-xcolor
+xcolor 
 \series default
-,
+with 
 \series bold
- tikz
+usenames 
+\series default
+and
+\series bold
+ dvipsnames 
+\series default
+options
+\series bold
+, tikz
 \series default
  with the 
 \series bold
@@ -323,7 +331,7 @@ libraries,
 \series bold
  varwidth
 \series default
-, and
+,
 \series bold
  tcolorbox 
 \series default
