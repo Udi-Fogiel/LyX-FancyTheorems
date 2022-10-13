@@ -1,6 +1,6 @@
 # LyX-FancyTheorems
 
-Define customizable theorems layouts. 
+The fancythm package was written for the Fancy Theorems module, which defines customizable theorems layouts in LyX. 
 
 ## Use
 
