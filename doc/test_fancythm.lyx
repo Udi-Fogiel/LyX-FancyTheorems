@@ -1,0 +1,1093 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extarticle
+\begin_preamble
+\newfontfamily\englishfont[Language=English,Ligatures=TeX,Script=Latin]{Times New Roman}
+\newfontfamily\hebrewfont[Script=Hebrew,Ligatures=TeX]{David CLM}
+
+\newcommand{\fancythmprintenv}[3]{%
+	\setfancythmkeys{all}{#3}%
+	\@for\env:=\fancythm@envs\do{%
+		\begin{\env}[#2]%
+		#1%
+		\end{\env}%
+	}%
+}
+
+\newcommand{\fancythmprintallenvs}[3]{%
+	\section{#3 \textenglish{colorcoded}}
+	\fancythmprintenv{#1}{#2}{colorcoded}%
+	\section{#3 \textenglish{fancycolorcoded}}
+	\fancythmprintenv{#1}{#2}{fancycolorcoded}%
+	\section{#3 \textenglish{thmbx=S}}
+	\fancythmprintenv{#1}{#2}{thmbox=S}%
+	\section{#3 \textenglish{thmbox=L}}
+	\fancythmprintenv{#1}{#2}{thmbox=L}%
+	\section{#3 \textenglish{thmbox}}
+	\fancythmprintenv{#1}{#2}{thmbox}%
+	\section{#3 \textenglish{margins}}
+	\fancythmprintenv{#1}{#2}{margins}%
+	\section{#3 \textenglish{tcb}}
+	\fancythmprintenv{#1}{#2}{tcb}%
+	\section{#3 \textenglish{tcbribbon}}
+	\fancythmprintenv{#1}{#2}{tcbribbon}%
+	\section{#3 \textenglish{tcbdiamond}}
+	\fancythmprintenv{#1}{#2}{tcbdiamond}%
+	\section{#3 \textenglish{bclogo}}
+	\fancythmprintenv{#1}{#2}{bclogo}%
+}
+
+\newcounter{dummyctr}
+\newcommand\dummytext[2]{%
+  \loop \ifnum\value{dummyctr} < #1%
+    #2%
+    \stepcounter{dummyctr}%
+  \repeat%
+\setcounter{dummyctr}{0}%
+}
+\end_preamble
+\options templates
+\use_default_options true
+\begin_modules
+fancythm
+\end_modules
+\maintain_unincluded_children false
+\language hebrew
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 1
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "linkcolor=blue"
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch blind
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3.5cm
+\rightmargin 3.5cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+משפטים בסגנון
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+default
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch blind
+inverted 0
+status collapsed
+
+\begin_layout Theorem
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corollary
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corollary*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Conjecture
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Conjecture*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Fact
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Fact*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Exercise*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Solution
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Solution*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Claim
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Claim*
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+כותרת חלופית
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+dummytext{35}{טקסט דמה, }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancythmprintallenvs{
+\backslash
+dummytext{20}{טקסט דמה, }}{כותרת חלופית}{משפטים בסגנון}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+
+\lang english
+Theorems in style default
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancythmprintenv{
+\backslash
+dummytext{20}{dummy text, }}{Dummy Note}{default}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancythmprintallenvs{
+\backslash
+dummytext{20}{dummy text, }}{Dummy Note}{Theorems in style}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

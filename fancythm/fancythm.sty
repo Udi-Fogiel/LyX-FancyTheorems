@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fancythm}
+\ProvidesPackage{fancythm}[2022/10/13]
 
 \RequirePackage{amsthm}
 \RequirePackage{thmtools}
@@ -134,7 +134,9 @@
 	\fi
 	\ifx\fancythm@templst\@empty\else
 		\@for\fam:=\fancythm@templst\do{%
-			\setkeys{fancythm@\fam}{#2}%
+			\ifcsname fancythm@#1@title\endcsname
+				\setkeys{fancythm@\fam}{#2}%
+			\fi
 		}%
 	\fi
 }
@@ -215,15 +217,15 @@
 \newcommand{\declarefancythm}[5]{%  #1 = env name, #2 = default keys, #3 = default title, #4 = color, #5 = logo
 	\define@fancythm@keyfamily{#1}%
 	\global\@namedef{#1title}{\@nameuse{fancythm@#1@title}\@nameuse{fancythm@#1@space}}%
-	\setfancythmkeys{#1}{title=#3}%
-	\setfancythmkeys{#1}{refname=\csname fancythm@#1@title\endcsname}%
+	\setkeys{fancythm@#1}{title=#3}%
+	\setkeys{fancythm@#1}{refname=\csname fancythm@#1@title\endcsname}%
 	\AtBeginDocument{%
 		\@ifpackageloaded{hyperref}{%
 			\@xa\global\@xa\let\csname theH#1\endcsname\the@fancythm@hyperref  
 		}{}%
 	}%
 	\define@fancythm@defaults{#1}{#2}%
-	\setfancythmkeys{#1}{default}%
+	\setkeys{fancythm@#1}{default}%
 	\declaretheoremstyle[%
 		headfont=\normalfont\fancythm@lang@font\csname fancythm@#1@headfont\endcsname,                         
 		notefont=\normalfont\fancythm@lang@font\csname fancythm@#1@notefont\endcsname,                         
@@ -245,10 +247,10 @@
 		qed=\csname fancythm@#1@qed\endcsname]{#1}%
 	\edef\fancythm@envs{\fancythm@envs,#1}%
 	\in@{*@fancythm@strd}{#1@fancythm@strd}\ifin@
-		\setfancythmkeys{#1}{numberwithin=section,numbered=false}%
+		\setkeys{fancythm@#1}{numberwithin=section,numbered=false}%
 		\edef\fancythm@strdenvs{\fancythm@strdenvs,#1}%
 	\else
-		\setfancythmkeys{#1}{numbered=true,numberwithin=section}%
+		\setkeys{fancythm@#1}{numbered=true,numberwithin=section}%
 		\edef\fancythm@regenvs{\fancythm@regenvs,#1}%
 	\fi
 	\if@fancythm@templates@
