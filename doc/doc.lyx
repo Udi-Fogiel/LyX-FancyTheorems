@@ -236,8 +236,8 @@ Installation
 
 \begin_layout Standard
 Firstly, manually install the fancythm package.
- This installation procedure is dependent on your \SpecialChar LaTeX
- distribution, so I wont
+ The installation procedure is dependent on your \SpecialChar LaTeX
+ distribution, so I won't
  explain how to do so here (it will probably just require you to copy the
  fancythm folder to some directory, and then tell your latex \SpecialChar LaTeX
  distribution
@@ -270,8 +270,7 @@ About Lyx
 Tools\SpecialChar menuseparator
 Reconfigure
 \family default
-.
- Lastly, restart \SpecialChar LyX
+, and restart \SpecialChar LyX
 .
 \end_layout
 
@@ -339,7 +338,8 @@ with the
 most 
 \series default
 option.
- It is recommended to check that all 
+ It is recommended to check that all of these packages are installed.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -389,7 +389,7 @@ Designing Theorems
 \end_layout
 
 \begin_layout Standard
-Suppose you would like to state the Pythagorean theorem in our document.
+Suppose you would like to state the Pythagorean theorem in your document.
  To do so, go to \SpecialChar LyX
 's environment selection combobox, select the Theorem layout
  and write the theorem's content (if you would to write an optional note,
