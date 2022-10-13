@@ -40,6 +40,8 @@ spacebelow=8pt}
 \fi
 
 \AtBeginDocument{\renewcommand{\ref}[1]{\mbox{\autoref{#1}}}}
+
+\def\thefigure{\unskip}
 \end_preamble
 \options templates
 \use_default_options true
@@ -396,9 +398,9 @@ Suppose you would like to state the Pythagorean theorem in your document.
  go to 
 \family sans
 Insert\SpecialChar menuseparator
-Optional
+Optional Note
 \family default
- Note, or press 
+, or press 
 \family sans
 Alt+A 1
 \family default
@@ -452,7 +454,7 @@ noprefix "false"
 
 \end_inset
 
-), and in the inset itself write the keys appropriate values.
+), and in the inset itself write the keys with the appropriate values.
  For example, we will change the note braces to be square brackets, we will
  add a symbol to mark the end of the theorem and add more vertical space
  before the theorem.
@@ -542,12 +544,12 @@ The following diagram
 status open
 
 \begin_layout Plain Layout
-The diagram is stolen from thmtools's documentation
+Credit to thmtools
 \end_layout
 
 \end_inset
 
- demonstrate some of the possible theorems keys.
+ demonstrates some of the possible theorems keys.
 \end_layout
 
 \begin_layout Standard
@@ -626,8 +628,8 @@ Instant Preview
 \begin_inset Preview
 
 \begin_layout Remark*
-For example, this paragraph is written with the Remark* layout (that it's
- keys are set in the preamble) inside a preview box.
+For example, this paragraph is written with the Remark* layout (its keys
+ are set in the preamble) inside a preview box.
 \end_layout
 
 \end_inset
