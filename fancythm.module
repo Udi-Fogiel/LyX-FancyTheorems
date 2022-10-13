@@ -166,7 +166,7 @@ Style Theorem*
 	EndFont
 	DependsOn			  Theorem
 	LangPreamble
-		\expandafter\renewcommand\csname fancythm@thm*@defaultname\endcsname{_(Theorem)}
+		\expandafter\providecommand\csname fancythm@thm*@defaultname\endcsname{_(Theorem)}
 	EndLangPreamble
 	BabelPreamble
 		\addto\captions$$lang{\expandafter\def\csname fancythm@thm*@defaultname\endcsname{_(Theorem)}}
