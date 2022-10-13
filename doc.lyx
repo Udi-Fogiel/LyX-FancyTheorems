@@ -398,9 +398,9 @@ Suppose you would like to state the Pythagorean theorem in your document.
  go to 
 \family sans
 Insert\SpecialChar menuseparator
-Optional
+Optional Note
 \family default
- Note, or press 
+, or press 
 \family sans
 Alt+A 1
 \family default
@@ -454,7 +454,7 @@ noprefix "false"
 
 \end_inset
 
-), and in the inset itself write the keys appropriate values.
+), and in the inset itself write the keys with the appropriate values.
  For example, we will change the note braces to be square brackets, we will
  add a symbol to mark the end of the theorem and add more vertical space
  before the theorem.
