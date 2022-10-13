@@ -486,26 +486,6 @@ star$,spaceabove=12pt
 
 \end_layout
 
-\begin_layout Remark*
-The latex command of that layout is 
-\family typewriter
-
-\backslash
-setfancythmkeys{<envs>}{<key=val>}
-\family default
-, where 
-\family typewriter
-<envs>
-\family default
- is a comma separated list of all the environments names that you want to
- change, and 
-\family typewriter
-<key=val> 
-\family default
-is a comma separated list of the keys you want to change.
- 
-\end_layout
-
 \begin_layout Standard
 Now we should be able to see the changes in all the following theorems (with
  environment name 
@@ -536,6 +516,44 @@ Pythagoras
 \end_inset
 
 
+\end_layout
+
+\begin_layout Remark*
+The latex command of that layout is 
+\family typewriter
+
+\backslash
+setfancythmkeys{<envs>}{<key=val>}
+\family default
+, where 
+\family typewriter
+<envs>
+\family default
+ is a comma separated list of all the environments names that you want to
+ change, and 
+\family typewriter
+<key=val> 
+\family default
+is a comma separated list of the keys you want to change.
+ In addition, 
+\family typewriter
+<envs>
+\family default
+ accepts the keywords 
+\family typewriter
+all
+\family default
+, 
+\family typewriter
+reg
+\family default
+, and 
+\family typewriter
+strd
+\family default
+ to apply the changes to all environments, all the unstarred variants, or
+ all the starred variants.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -602,13 +620,13 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-There is an option to use preview (via 
+There is an option to use preview box (via 
 \family sans
 Insert\SpecialChar menuseparator
 Preview
 \family default
-) with the theorems layouts, but, to see the keys that you defined you need
- to include the 
+) with the theorems layouts, but, to see the changes that you applied you
+ need to include the 
 \family sans
 Set Keys
 \family default
@@ -646,13 +664,13 @@ Using the
 \series bold
 templates
 \series default
- option gives you access predefined styles for theorems.
+ option gives you access to predefined styles for theorems.
  To use them, insert the 
 \family sans
 Set Keys
 \family default
- layout, as before, and in the keys list write name of the style.
- for example, here is a theorem with the 
+ layout, as before, and in the keys list write a name of one of the styles.
+ For example, here is a theorem with the 
 \family typewriter
 fancycolorcoded
 \family default
@@ -721,6 +739,7 @@ To print a list of theorems go to \SpecialChar LyX
 \end_layout
 
 \begin_layout List of Theorems
+
 \begin_inset Argument 1
 status open
 
@@ -740,6 +759,7 @@ Now I will change the list format with the swapnumber key, and change the
 \end_layout
 
 \begin_layout List of Theorems
+
 \begin_inset Argument 1
 status open
 
@@ -777,7 +797,7 @@ In the following section, if a key description is titled in violet color,
 \family typewriter
 thmtools
 \family default
-, if it is green, it is a new key defined in 
+, if it is green, it's a new key defined in 
 \family typewriter
 fancythm
 \family default
