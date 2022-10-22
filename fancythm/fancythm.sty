@@ -134,7 +134,7 @@
 	\fi
 	\ifx\fancythm@templst\@empty\else
 		\@for\fam:=\fancythm@templst\do{%
-			\ifcsname fancythm@#1@title\endcsname
+			\ifcsname fancythm@\fam @title\endcsname
 				\setkeys{fancythm@\fam}{#2}%
 			\fi
 		}%
