@@ -6,7 +6,7 @@
 #the key-val of thmtools, and use the \listoftheorems command,
 #provided by the thmtools package.
 #DescriptionEnd
-#Excludes: theorems-std | theorems-starred | theorems-ams | theorems-bytype
+#Excludes: theorems-std | theorems-ams | theorems-ams-bytype | theorems-bytype
 
 # Original Author : Udi Fogiel (most was copied from the AMS Theorem (numbered by type) module )
 
