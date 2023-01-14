@@ -82,6 +82,24 @@
 	}%
 }
 
+\def\define@fancythm@qed#1{%
+	\define@key{fancythm@#1}{qed}{%
+	\thmt@trytwice{}{%
+		\ifx ##1\relax
+			\@xa\gdef\csname fancythm@#1@qedbefore\endcsname{}%
+			\@xa\gdef\csname fancythm@#1@qedafter\endcsname{}%
+		\else
+			\@xa\gdef\csname fancythm@#1@qedbefore\endcsname{%
+				\protected@edef\qedsymbol{##1}%
+				\pushQED{\qed}%
+			}%
+			\@xa\gdef\csname fancythm@#1@qedafter\endcsname{%
+				\protected@edef\qedsymbol{##1}%
+				\popQED
+			}%
+		\fi}%
+	}%
+}
 \def\define@fancythm@keyfamily#1{%
 	\define@fancythm@key{#1}{headfont}%
 	\define@fancythm@key{#1}{notefont}%
@@ -100,10 +118,10 @@
 	\define@fancythm@key{#1}{rightnotebrace}%
 	\define@fancythm@key{#1}{spaceabove}%
 	\define@fancythm@key{#1}{spacebelow}%
-	\define@fancythm@key{#1}{qed}%
 	\define@fancythm@numberwithin{#1}%
 	\define@fancythm@numbered{#1}%
 	\define@fancythm@sibling{#1}%
+	\define@fancythm@qed{#1}%
 }
 
 \def\setfancythmkeys#1#2{%
@@ -172,7 +190,7 @@
 			leftnotebrace=(,
 			spaceabove=6pt,
 			spacebelow=6pt,
-			qed=,
+			qed=\relax,
 			#2
 		}%
 		\@xa\gdef\csname fancythm@#1@beginstyle\endcsname{}
@@ -240,11 +258,10 @@
 		style=fancythm@#1,
 		title=\protect\csname fancythm@#1@title\endcsname,
 		preheadhook=\csname fancythm@#1@preheadhook\endcsname\vspace{\csname fancythm@#1@spaceabove\endcsname}\csname fancythm@#1@beginstyle\endcsname,
-		postheadhook=\csname fancythm@#1@postheadhook\endcsname,
-		prefoothook=\csname fancythm@#1@prefoothook\endcsname,
+		postheadhook=\csname fancythm@#1@postheadhook\endcsname\csname fancythm@#1@qedbefore\endcsname,
+		prefoothook=\csname fancythm@#1@qedafter\endcsname\csname fancythm@#1@prefoothook\endcsname,
 		postfoothook=\csname fancythm@#1@endstyle\endcsname\vspace{\csname fancythm@#1@spacebelow\endcsname}\csname fancythm@#1@postfoothook\endcsname,
-		refname=\csname fancythm@#1@refname\endcsname,
-		qed=\csname fancythm@#1@qed\endcsname]{#1}%
+		refname=\csname fancythm@#1@refname\endcsname]{#1}%
 	\edef\fancythm@envs{\fancythm@envs,#1}%
 	\in@{*@fancythm@strd}{#1@fancythm@strd}\ifin@
 		\setkeys{fancythm@#1}{numberwithin=section,numbered=false}%
