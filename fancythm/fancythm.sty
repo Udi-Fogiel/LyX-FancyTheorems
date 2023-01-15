@@ -84,8 +84,7 @@
 
 \def\define@fancythm@qed#1{%
 	\define@key{fancythm@#1}{qed}{%
-	\thmt@trytwice{}{%
-		\ifx ##1\relax
+		\if\relax\detokenize{##1}\relax
 			\@xa\gdef\csname fancythm@#1@qedbefore\endcsname{}%
 			\@xa\gdef\csname fancythm@#1@qedafter\endcsname{}%
 		\else
@@ -97,7 +96,7 @@
 				\protected@edef\qedsymbol{##1}%
 				\popQED
 			}%
-		\fi}%
+		\fi
 	}%
 }
 \def\define@fancythm@keyfamily#1{%
@@ -190,7 +189,7 @@
 			leftnotebrace=(,
 			spaceabove=6pt,
 			spacebelow=6pt,
-			qed=\relax,
+			qed=,
 			#2
 		}%
 		\@xa\gdef\csname fancythm@#1@beginstyle\endcsname{}
