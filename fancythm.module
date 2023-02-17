@@ -679,7 +679,39 @@ InsetLayout "Flex:set keys"
 End
 
 Input theorems-case.inc
-Input theorems-proof.inc
+
+Style Proof
+	Category              Reasoning
+	Margin                First_Dynamic
+	LatexType             Environment
+	LatexName             proof
+	NextNoIndent          1
+	ResetArgs             1
+	Argument 1
+		LabelString   "Alternative Proof String"
+		Tooltip       "Alternative proof string"
+	EndArgument
+	LabelSep              xx
+	ParIndent             MMM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Block, Left
+	LabelType             Static
+	LabelString           "Proof."
+	EndLabelType          Box
+	Font
+	  Shape               Up
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Shape               Italic
+	EndFont
+	Requires	amsthm
+End
 
 Style "List of Theorems"
 	Margin				Dynamic
