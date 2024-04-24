@@ -127,32 +127,32 @@
 	\def\fancythm@templst{#1}%
 	\@expandtwoargs\in@{,all,}{,\fancythm@templst,}\ifin@
 		\ifx\fancythm@envs\@gobble\else
-			\@for\fam:=\fancythm@envs\do{%
-				\setkeys{fancythm@\fam}{#2}%
+			\@for\fancythm@fam:=\fancythm@envs\do{%
+				\setkeys{fancythm@\fancythm@fam}{#2}%
 			}%
 		\fi
 		\@expandtwoargs\@removeelement{all}\fancythm@templst\fancythm@templst
 	\fi
 	\@expandtwoargs\in@{,reg,}{,\fancythm@templst,}\ifin@
 		\ifx\fancythm@regenvs\@gobble\else
-			\@for\fam:=\fancythm@regenvs\do{%
-				\setkeys{fancythm@\fam}{#2}%
+			\@for\fancythm@fam:=\fancythm@regenvs\do{%
+				\setkeys{fancythm@\fancythm@fam}{#2}%
 			}%
 		\fi
 		\@expandtwoargs\@removeelement{reg}\fancythm@templst\fancythm@templst
 	\fi
 	\@expandtwoargs\in@{,strd,}{,\fancythm@templst,}\ifin@
 		\ifx\fancythm@strdenvs\@gobble\else
-			\@for\fam:=\fancythm@strdenvs\do{%
-				\setkeys{fancythm@\fam}{#2}%
+			\@for\fancythm@fam:=\fancythm@strdenvs\do{%
+				\setkeys{fancythm@\fancythm@fam}{#2}%
 			}%
 		\fi
 		\@expandtwoargs\@removeelement{strd}\fancythm@templst\fancythm@templst
 	\fi
 	\ifx\fancythm@templst\@empty\else
-		\@for\fam:=\fancythm@templst\do{%
-			\ifcsname fancythm@\fam @title\endcsname
-				\setkeys{fancythm@\fam}{#2}%
+		\@for\fancythm@fam:=\fancythm@templst\do{%
+			\ifcsname fancythm@\fancythm@fam @title\endcsname
+				\setkeys{fancythm@\fancythm@fam}{#2}%
 			\fi
 		}%
 	\fi
